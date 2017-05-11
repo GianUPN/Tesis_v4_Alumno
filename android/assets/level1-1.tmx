@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" nextobjectid="3">
+ <tileset firstgid="1" name="tileset-pokemon_dawn" tilewidth="16" tileheight="16" tilecount="14758" columns="94">
+  <image source="tileset-pokemon_dawn.png" trans="ffffff" width="1504" height="2519"/>
+ </tileset>
+ <layer name="ground" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzlmV1qxDAMhMMmmG5P00MU+tjettcrCzV4hSNLI1lW2gfBks3PfJ6R7c3etm27XaQ+7s+1Wk82jjKo0flZOK7uBzKWGTn+ih/Umyh/IvyIYInKFeKN5pqW4Stpf0hYWo7PxBwjlpXzlSZnWg4Lk0RXIZ+9WGZwUH2S/YiVpafb2w9OZxGcg3CgfiAMKMvsXJ1lZqSPZhAdsxnV6r8qR6/Pz87df0vDouV4e3kuCxf3feVA/EM4UBbuuQdhkVxjydUsjpZFupZk5aD5WsnBrdetzl3gy2o/SkdLfSZlODZcU0Sfa3oVHVfkOg3LQT6XznGP3+wR6+BZxitXL3urtGrHDnlPmIGjp7v2eMSc5KF/1r2i97gzOSL3uTPv9d853u/nhe61uH1JpB+UB+GQsPT2ZZk4kFztnWPeLJwOy3Mj+lzqh+U/P8t7x0d9v8o5kDHWvG9Dx6ByjFg0HFSPpiyZ8eaYVVWnRG9WDg+GlRxUv5SHW8/RPp/FwLFYOHrzJsrBafbI14jDMje1x7z6IaI4tqswSDO1WosHh+UeP8peaEc=
+  </data>
+ </layer>
+ <layer name="detalles" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmElwVEUYxzszgcxkWKwCEqq4qFgqJBOIeFBcSkgC3PQiAu5ysVSsYj2qUEASEogn9SQg7h6VRK3yEpRVs6IntwKSQI5e3AL6e8y8mi9fXr8lMy+SKv9Vv5ruWV5///66v+7EmOmhjvT4/sP0f0sVmC7y8vGIYLrofx/GzIY5MBfmwXxYoNrGox+HivHxIrwEW2ArbIPtqm08+nGoGB9n4Cycg17og37VNqofV26i+pBrSUvGWAfLPF6LzY0cX7aj+pBr6YOEMR/CR4ncZzLGdjjo8apzFVVyfNmO6kOupRlJY2ZCRTL3mYzRlg9HxawtOb5se/m4h/PvXlgJ3cz1CfgavoGTicJ3P6b9ScJ4ypYPR6XY9ydUX/s4Sv8N4n8T3oKbmetb4FZYDLclC/GnaKeTE/345cLRZNbWV8a+N6SPFZY7yCvE+Sq8BrthT7IQvyvdt+Wi2Fpl2xvah8bRj8T3E/wMv8Cv+XhlDvTcxFWrbHtDj689OFpZbsx9cD88AA+W596XOdBzE1etskmOP7fSmJsqJ/rQ8trbcm4mo+MstE7ogs/hC/jSsvi8zi85/hY8vFzpvbak9F6QqoJqWGjG7wV9zmjN44fzYQFUQTUsrPL+rs69rFu/E+8fFoIk52cH7IRdZvxe0OeM1lZi3gbbYQfshF0WHzr3cvxHfe5RAxXeDFbkPpfzMwCDcN5E2wu9xNwH/TAAg3Ae2mcG/1aOL33I3PwJyy3Up7znx9Wx/NyvsuTAVQuLMMtirINlsBzq4S4YDeFDji99OO31eR5Le+dB+ihWw/hoI+Z2OAiHoANeh3UV0Z6lfTi5cH3IHDg+6kU+asuYS6grK97P8zx7LJHjhYjx23ysz/eDfBwg/jZon0Ifsib6+fiU9md5jgf4uEz8V2BU+eiO0YesiX4+tPx8rGHMtbDOci5EUVgfsiZqaR9/EePfMAaHFB2p0uxznTM/H3IthV1Xjjbk+5vSwXW3VPLzIdeSbC/O8HdEpvA9uSccWomxi9fmEOeH1GkuIWfgLJyDb+E76IFe6PO5sDs+ambk0D7kWpLt3XjYk9FP8lYUH7eT9DvgTlgCS6EGaiELdZa7RpCPMNpba8w+2A/Ntbn3llB/lkJNWTQfe4lzH+yHZmiBVjgAbc49I0YfF4j9IlyCobyPZuJvgdaIPi4Q50W4BEMwDCNwGa7AqPKxuYQ+HspyB4LV0JDNvTdE/MMwUjaxXsm6NeFZFJJVsBoaoBGaYA2sde4Z1fY4/HycCuHjbWI/DEfgaN5HAzWjEZos50IPf6f0V3o8izgPwxFYVFXgXfrvwfuT9BFGY8R+Fa7BP9nC+25Nc8+/oPv79WcR51W4Vp27hy/K38ETFPsklHsV/ZA+wuTES25Nk3vCS3KfbCLOx+EJeBKegqfhGXgWnovgw++8m4yGU3ZGLPtdxhR2nWgffveosJL/S3Dy0JjOIdsOTemCjz6xX2w+/O6P2offPSqs5P8SZNwa10eP2vOlyEdUbSCGjT6E8SHVHdGHm6NifXQSa5cPYX30+KyrOfQzAcyOwcf31KkfMtF8SGkfUdE+gtbMRksOVswy5u5ZN46PoDUThrA+ZL06SRyniuB0BB+OSukjTnVa4nYVxsc7aTvHptiHVCnXVWMJfGwO/sp1H166kXyEkfZR6n3+X/iIo15NtY+46u508vEv5YRLLg==
+  </data>
+ </layer>
+ <objectgroup name="arboles">
+  <object id="2" x="483" y="546" width="41" height="42"/>
+ </objectgroup>
+</map>
