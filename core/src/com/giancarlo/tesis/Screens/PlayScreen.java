@@ -61,53 +61,54 @@ public class PlayScreen implements Screen {
     public State state = State.Running;
 
     public PlayScreen(TesisMain game){
-        this.game = game;
-        gamecam = new OrthographicCamera();
-        atlas = new TextureAtlas("Personajes.pack");
-        //Fitviewport para mantener el aspecto original de la pantalla
-        viewport = new FitViewport(TesisMain.V_WIDTH,TesisMain.V_HEIGHT, gamecam);
-        //una escena del screen donde se visualiza el puntaje
-        currentScore = new CurrentScore(game.batch,this);
-        mapLoader = new TmxMapLoader();
-        map = mapLoader.load("level1-2.tmx");
-        //brindarle el mapa al renderizador de mapas y de paso darle mas Caché
-        renderer = new OrthoCachedTiledMapRenderer(map,1,5000);
-        //inicializar camara con posiciones
-        gamecam.position.set(600,600,0);
-        // Box2d incializacion
-        world = new World(new Vector2(0,0),true);//AQUI SE AGREGA LA GRAVEDAD
-        b2dr = new Box2DDebugRenderer();
-        BodyDef bodyDef = new BodyDef();
-        PolygonShape shape = new PolygonShape();
-        FixtureDef fixtureDef = new FixtureDef();
-        Body body;
+        try {
+            this.game = game;
+            gamecam = new OrthographicCamera();
+            atlas = new TextureAtlas("Personajes.pack");
+            //Fitviewport para mantener el aspecto original de la pantalla
+            viewport = new FitViewport(TesisMain.V_WIDTH, TesisMain.V_HEIGHT, gamecam);
+            //una escena del screen donde se visualiza el puntaje
+            currentScore = new CurrentScore(game.batch, this);
+            mapLoader = new TmxMapLoader();
+            map = mapLoader.load("level1-2.tmx");
+            //brindarle el mapa al renderizador de mapas y de paso darle mas Caché
+            renderer = new OrthoCachedTiledMapRenderer(map, 1, 5000);
+            //inicializar camara con posiciones
+            gamecam.position.set(600, 600, 0);
+            // Box2d incializacion
+            world = new World(new Vector2(0, 0), true);//AQUI SE AGREGA LA GRAVEDAD
+            b2dr = new Box2DDebugRenderer();
+            BodyDef bodyDef = new BodyDef();
+            PolygonShape shape = new PolygonShape();
+            FixtureDef fixtureDef = new FixtureDef();
+            Body body;
 
-        for(MapObject object : map.getLayers().get("arboles").getObjects().getByType(RectangleMapObject.class)){
-            Rectangle rectangle = ((RectangleMapObject)object).getRectangle();
-            bodyDef.type = BodyDef.BodyType.StaticBody;
-            bodyDef.position.set(rectangle.getX()+rectangle.getWidth()/2,rectangle.getY()+rectangle.getHeight()/2);
+            for (MapObject object : map.getLayers().get("arboles").getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
+                bodyDef.type = BodyDef.BodyType.StaticBody;
+                bodyDef.position.set(rectangle.getX() + rectangle.getWidth() / 2, rectangle.getY() + rectangle.getHeight() / 2);
 
-            body = world.createBody(bodyDef);
-            shape.setAsBox(rectangle.getWidth()/2,rectangle.getHeight()/2);
-            fixtureDef.shape = shape;
-            body.createFixture(fixtureDef);
-        }
-        for(MapObject object : map.getLayers().get("casas").getObjects().getByType(RectangleMapObject.class)){
-            Rectangle rectangle = ((RectangleMapObject)object).getRectangle();
-            bodyDef.type = BodyDef.BodyType.StaticBody;
-            bodyDef.position.set(rectangle.getX()+rectangle.getWidth()/2,rectangle.getY()+rectangle.getHeight()/2);
+                body = world.createBody(bodyDef);
+                shape.setAsBox(rectangle.getWidth() / 2, rectangle.getHeight() / 2);
+                fixtureDef.shape = shape;
+                body.createFixture(fixtureDef);
+            }
+            for (MapObject object : map.getLayers().get("casas").getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
+                bodyDef.type = BodyDef.BodyType.StaticBody;
+                bodyDef.position.set(rectangle.getX() + rectangle.getWidth() / 2, rectangle.getY() + rectangle.getHeight() / 2);
 
-            body = world.createBody(bodyDef);
-            shape.setAsBox(rectangle.getWidth()/2,rectangle.getHeight()/2);
-            fixtureDef.shape = shape;
-            body.createFixture(fixtureDef);
-        }
-        list_personajes = new ArrayList<Personaje>();
-        for(MapObject object : map.getLayers().get("personajes").getObjects().getByType(RectangleMapObject.class)){
-            Rectangle rectangle = ((RectangleMapObject)object).getRectangle();
-            enemigo = new Enemy_Demon(this,rectangle.getX(),rectangle.getY(),5,5);
-            list_personajes.add(enemigo);
-        }
+                body = world.createBody(bodyDef);
+                shape.setAsBox(rectangle.getWidth() / 2, rectangle.getHeight() / 2);
+                fixtureDef.shape = shape;
+                body.createFixture(fixtureDef);
+            }
+            list_personajes = new ArrayList<Personaje>();
+            for (MapObject object : map.getLayers().get("personajes").getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rectangle = ((RectangleMapObject) object).getRectangle();
+                enemigo = new Enemy_Demon(this, rectangle.getX(), rectangle.getY(), 5, 5);
+                list_personajes.add(enemigo);
+            }
 
         /*
         cache.beginCache();
@@ -115,8 +116,10 @@ public class PlayScreen implements Screen {
         cache.
         cache.end();
         */
-        personaje1= new PersonajePrincipal(world,this,"M");
+            personaje1 = new PersonajePrincipal(world, this, "M");
+        }catch (Exception e){
 
+        }
     }
 
     @Override
