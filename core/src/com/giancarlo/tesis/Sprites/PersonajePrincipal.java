@@ -1,23 +1,18 @@
 package com.giancarlo.tesis.Sprites;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
-import com.giancarlo.tesis.Scenes.CurrentScore;
+import com.giancarlo.tesis.Scenes.Question;
 import com.giancarlo.tesis.Screens.PlayScreen;
-
-import java.awt.geom.RectangularShape;
 
 /**
  * Created by Giancarlo on 23/08/2016.
@@ -62,7 +57,7 @@ public class PersonajePrincipal extends Sprite{
             if(this.getBoundingRectangle().overlaps(Enemy_Demon.instancias.get(i).getBoundingRectangle())){
                 screen.state = PlayScreen.State.Question;
                 Gdx.app.log("Collision","ok");
-                CurrentScore.personaje_pregunta=i;
+                Question.personaje_pregunta=i;
             }
         }
 

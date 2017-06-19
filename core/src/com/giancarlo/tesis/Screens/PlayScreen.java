@@ -5,7 +5,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.SpriteCache;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.MapObject;
@@ -23,7 +22,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.giancarlo.tesis.Scenes.CurrentScore;
+import com.giancarlo.tesis.Scenes.Question;
 import com.giancarlo.tesis.Sprites.Personaje;
 import com.giancarlo.tesis.Sprites.PersonajePrincipal;
 import com.giancarlo.tesis.Sprites.*;
@@ -40,7 +39,7 @@ public class PlayScreen implements Screen {
     private TesisMain game;
     private OrthographicCamera gamecam;
     private Viewport viewport;
-    private CurrentScore currentScore;
+    private Question currentScore;
     private SpriteCache cache;
     //Tiled map variables
     private TmxMapLoader mapLoader;
@@ -68,7 +67,7 @@ public class PlayScreen implements Screen {
             //Fitviewport para mantener el aspecto original de la pantalla
             viewport = new FitViewport(TesisMain.V_WIDTH, TesisMain.V_HEIGHT, gamecam);
             //una escena del screen donde se visualiza el puntaje
-            currentScore = new CurrentScore(game.batch, this);
+            currentScore = new Question(game.batch, this);
             mapLoader = new TmxMapLoader();
             map = mapLoader.load("level1-2.tmx");
             //brindarle el mapa al renderizador de mapas y de paso darle mas Caché
@@ -183,8 +182,8 @@ public class PlayScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.render();
         //rendirizar Box2d debug lines
-        //b2dr.render(world, gamecam.combined);
-        //b2dr.SHAPE_STATIC.set(0, 0, 0, 1);
+        b2dr.render(world, gamecam.combined);
+        b2dr.SHAPE_STATIC.set(0, 0, 0, 1);
         //matriz de proyeccion
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
