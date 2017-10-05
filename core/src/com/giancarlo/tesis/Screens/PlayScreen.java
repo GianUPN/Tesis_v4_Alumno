@@ -3,6 +3,7 @@ package com.giancarlo.tesis.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -26,6 +27,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.giancarlo.tesis.Scenes.ExamenDao;
 import com.giancarlo.tesis.Scenes.Login;
 import com.giancarlo.tesis.Scenes.Pregunta;
+import com.giancarlo.tesis.Scenes.Puntaje;
 import com.giancarlo.tesis.Scenes.Question;
 import com.giancarlo.tesis.Sprites.Personaje;
 import com.giancarlo.tesis.Sprites.PersonajePrincipal;
@@ -42,7 +44,7 @@ public class PlayScreen implements Screen {
 
     public List<Pregunta> preguntas;
     public Integer contador=0;
-
+    public Puntaje puntaje_general;
 
     public TesisMain game;
     private OrthographicCamera gamecam;
@@ -50,6 +52,7 @@ public class PlayScreen implements Screen {
     public Question currentScore;
     public Login pantalla_login;
     private SpriteCache cache;
+    private Sound musica_fondo;
     //Tiled map variables
     private TmxMapLoader mapLoader;
     private TiledMap map;
@@ -71,8 +74,14 @@ public class PlayScreen implements Screen {
     public PlayScreen(TesisMain game){
         try {
             this.game = game;
+            puntaje_general = Puntaje.getinstancia();
+            puntaje_general.getinstancia().setDif_actual(1);
+            puntaje_general.getinstancia().setCorrectas(0);
+            puntaje_general.getinstancia().setIncorrectas(0);
+            puntaje_general.getinstancia().setPuntaje(0);
             gamecam = new OrthographicCamera();
             atlas = new TextureAtlas("Personajes.pack");
+            musica_fondo = Gdx.audio.newSound(Gdx.files.internal("musica.mp3"));
             //Fitviewport para mantener el aspecto original de la pantalla
 
             viewport = new FitViewport(TesisMain.V_WIDTH, TesisMain.V_HEIGHT, gamecam);
@@ -130,6 +139,8 @@ public class PlayScreen implements Screen {
         cache.end();
         */
             personaje1 = new PersonajePrincipal(world, this, "M");
+            musica_fondo.play(0.4f);
+            musica_fondo.loop();
 
         }catch (Exception e){
             e.printStackTrace();

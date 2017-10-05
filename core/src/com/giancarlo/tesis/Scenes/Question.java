@@ -41,6 +41,7 @@ public class Question implements Disposable {
     private Integer score;
     private PlayScreen screen;
     private  Pregunta pregunta;
+    Puntaje puntaje;
 
     Sound winsound,losesound;
     Label countdown;
@@ -53,6 +54,7 @@ public class Question implements Disposable {
     //deberia desaparecer cuando se solucione la misma.
 
     public Question(SpriteBatch spriteBatch, PlayScreen screen,Pregunta pregunta){
+        puntaje = Puntaje.getinstancia();
         winsound = Gdx.audio.newSound(Gdx.files.internal("winsound.wav"));
         losesound = Gdx.audio.newSound(Gdx.files.internal("losesound.wav"));
         score = 0;

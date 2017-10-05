@@ -11,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
+import com.giancarlo.tesis.Scenes.Puntaje;
 import com.giancarlo.tesis.Scenes.Question;
 import com.giancarlo.tesis.Screens.PlayScreen;
 
@@ -30,12 +31,14 @@ public class PersonajePrincipal extends Sprite{
     private float statetimer;
     private PlayScreen screen;
     private Integer contador=0;
+    Puntaje puntaje;
 
     public PersonajePrincipal(World world, PlayScreen screen, String sexo){
         //super(screen.getAtlas().findRegion("personaje_f"));
         this.world = world;
         this.screen = screen;
         definePersonaje1();
+        puntaje = Puntaje.getinstancia();
         atlas = new TextureAtlas("Personajes.pack");
 
         personaje_parado = new TextureRegion(atlas.findRegion("personaje_f"),0,0,17,22);
@@ -58,11 +61,14 @@ public class PersonajePrincipal extends Sprite{
             if(this.getBoundingRectangle().overlaps(Enemy_Demon.instancias.get(i).getBoundingRectangle()) &&
                 screen.state== PlayScreen.State.Running)
             {
+                float[][]X = {{2f, 16.0f, 2.0f,8.0f}};
+
                 screen.state = PlayScreen.State.Question;
                 Gdx.app.log("Collision","ok");
                 Question.personaje_pregunta=i;
                 screen.currentScore = new Question(screen.game.batch,screen,screen.preguntas.get(contador));
                 contador++;
+                //xd
             }
         }
 

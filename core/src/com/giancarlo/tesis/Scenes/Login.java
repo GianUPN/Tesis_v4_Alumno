@@ -24,7 +24,7 @@ import com.giancarlo.tesis.Sprites.Enemy_Demon;
 import com.giancarlo.tesis.TesisMain;
 
 /**
- * Created by Giancarlo on 05/10/2017.
+ * Created by Giancarlo on 01/10/2016.
  */
 
 public class Login implements Disposable {
@@ -59,9 +59,6 @@ public class Login implements Disposable {
 
         worldlabel = new Label("Iniciar Sesión:"
                 ,new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        //worldlabel.setWidth(100f);
-
-        //worldlabel.setWrap(true);
         worldlabel.setTouchable(Touchable.enabled);
         Skin skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
         txt_login = new TextField("Usuario",skin);
@@ -98,7 +95,11 @@ public class Login implements Disposable {
                                      int pointer, int button) {
 
                 Gdx.app.log("Login","touched");
-                screen.state = PlayScreen.State.Running;
+                UsuarioDao dao = new UsuarioDao();
+                boolean login_flag = dao.login(txt_login.getText(),txt_pass.getText());
+                if(login_flag) {
+                    screen.state = PlayScreen.State.Running;
+                }
                 return true;
             }
         });
