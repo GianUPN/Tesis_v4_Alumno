@@ -29,6 +29,7 @@ public class PersonajePrincipal extends Sprite{
     private Animation current_anim;
     private float statetimer;
     private PlayScreen screen;
+    private Integer contador=0;
 
     public PersonajePrincipal(World world, PlayScreen screen, String sexo){
         //super(screen.getAtlas().findRegion("personaje_f"));
@@ -54,10 +55,14 @@ public class PersonajePrincipal extends Sprite{
         setRegion(getFrame(dt));
         //COLISIONES
         for(int i=0;i<Enemy_Demon.instancias.size();i++){
-            if(this.getBoundingRectangle().overlaps(Enemy_Demon.instancias.get(i).getBoundingRectangle())){
+            if(this.getBoundingRectangle().overlaps(Enemy_Demon.instancias.get(i).getBoundingRectangle()) &&
+                screen.state== PlayScreen.State.Running)
+            {
                 screen.state = PlayScreen.State.Question;
                 Gdx.app.log("Collision","ok");
                 Question.personaje_pregunta=i;
+                screen.currentScore = new Question(screen.game.batch,screen,screen.preguntas.get(contador));
+                contador++;
             }
         }
 

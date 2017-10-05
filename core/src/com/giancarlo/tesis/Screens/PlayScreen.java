@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.SpriteCache;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.MapObject;
@@ -22,6 +23,9 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.giancarlo.tesis.Scenes.ExamenDao;
+import com.giancarlo.tesis.Scenes.Login;
+import com.giancarlo.tesis.Scenes.Pregunta;
 import com.giancarlo.tesis.Scenes.Question;
 import com.giancarlo.tesis.Sprites.Personaje;
 import com.giancarlo.tesis.Sprites.PersonajePrincipal;
@@ -36,10 +40,15 @@ import java.util.List;
  */
 public class PlayScreen implements Screen {
 
-    private TesisMain game;
+    public List<Pregunta> preguntas;
+    public Integer contador=0;
+
+
+    public TesisMain game;
     private OrthographicCamera gamecam;
     private Viewport viewport;
-    private Question currentScore;
+    public Question currentScore;
+    public Login pantalla_login;
     private SpriteCache cache;
     //Tiled map variables
     private TmxMapLoader mapLoader;
@@ -53,11 +62,11 @@ public class PlayScreen implements Screen {
     Personaje enemigo;
     private TextureAtlas atlas;
     public enum State{
-        Running, Paused, Question
+        Running, Paused, Question, Login
     }
     private List<Personaje> list_personajes;
 
-    public State state = State.Running;
+    public State state = State.Login;
 
     public PlayScreen(TesisMain game){
         try {
@@ -65,9 +74,14 @@ public class PlayScreen implements Screen {
             gamecam = new OrthographicCamera();
             atlas = new TextureAtlas("Personajes.pack");
             //Fitviewport para mantener el aspecto original de la pantalla
+
             viewport = new FitViewport(TesisMain.V_WIDTH, TesisMain.V_HEIGHT, gamecam);
             //una escena del screen donde se visualiza el puntaje
-            currentScore = new Question(game.batch, this);
+            ExamenDao dao = new ExamenDao();
+            preguntas = new ArrayList<Pregunta>();
+            preguntas = dao.listar();
+            currentScore = new Question(game.batch, this,preguntas.get(0));
+            pantalla_login = new Login(game.batch,this);
             mapLoader = new TmxMapLoader();
             map = mapLoader.load("level1-2.tmx");
             //brindarle el mapa al renderizador de mapas y de paso darle mas Caché
@@ -116,8 +130,9 @@ public class PlayScreen implements Screen {
         cache.end();
         */
             personaje1 = new PersonajePrincipal(world, this, "M");
-        }catch (Exception e){
 
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -182,8 +197,8 @@ public class PlayScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.render();
         //rendirizar Box2d debug lines
-        b2dr.render(world, gamecam.combined);
-        b2dr.SHAPE_STATIC.set(0, 0, 0, 1);
+        //b2dr.render(world, gamecam.combined);
+        //b2dr.SHAPE_STATIC.set(0, 0, 0, 1);
         //matriz de proyeccion
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
@@ -196,7 +211,6 @@ public class PlayScreen implements Screen {
         switch(state){
             case Running:
                 handleInput(delta);
-
                 break;
             case Paused:
                 //don't update
@@ -207,6 +221,10 @@ public class PlayScreen implements Screen {
 
                 game.batch.setProjectionMatrix(currentScore.stage.getCamera().combined);
                 currentScore.stage.draw();
+                break;
+            case Login:
+                game.batch.setProjectionMatrix(pantalla_login.stage.getCamera().combined);
+                pantalla_login.stage.draw();
                 break;
         }
 
@@ -222,6 +240,7 @@ public class PlayScreen implements Screen {
         gamecam.update();
         viewport.update(width,height);
         currentScore.stage.getViewport().update(width, height, true);
+        pantalla_login.stage.getViewport().update(width, height, true);
 
     }
 
