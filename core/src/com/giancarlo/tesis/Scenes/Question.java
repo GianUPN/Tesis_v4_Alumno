@@ -120,8 +120,11 @@ public class Question implements Disposable {
                     screen.state = PlayScreen.State.Running;
                     if (pregunta.getLista_alternativas().get(0).isRespuesta()) {
                         winsound.play(1.0f);
+                        puntaje.setPuntaje(puntaje.getPuntaje()+2);
+                        puntaje.setCorrectas(puntaje.getCorrectas()+1);
                     } else {
                         losesound.play(1.0f);
+                        puntaje.setIncorrectas(puntaje.getIncorrectas()+1);
                     }
                 }
                 return true;
@@ -138,8 +141,11 @@ public class Question implements Disposable {
                     screen.state = PlayScreen.State.Running;
                     if (pregunta.getLista_alternativas().get(1).isRespuesta()) {
                         winsound.play(1.0f);
+                        puntaje.setPuntaje(puntaje.getPuntaje()+2);
+                        puntaje.setCorrectas(puntaje.getCorrectas()+1);
                     } else {
                         losesound.play(1.0f);
+                        puntaje.setIncorrectas(puntaje.getIncorrectas()+1);
                     }
                 }
                 return true;
@@ -156,8 +162,11 @@ public class Question implements Disposable {
                     screen.state = PlayScreen.State.Running;
                     if (pregunta.getLista_alternativas().get(2).isRespuesta()) {
                         winsound.play(1.0f);
+                        puntaje.setPuntaje(puntaje.getPuntaje()+2);
+                        puntaje.setCorrectas(puntaje.getCorrectas()+1);
                     } else {
                         losesound.play(1.0f);
+                        puntaje.setIncorrectas(puntaje.getIncorrectas()+1);
                     }
                 }
                 return true;
@@ -175,8 +184,11 @@ public class Question implements Disposable {
                     screen.state = PlayScreen.State.Running;
                     if (pregunta.getLista_alternativas().get(3).isRespuesta()) {
                         winsound.play(1.0f);
+                        puntaje.setPuntaje(puntaje.getPuntaje()+2);
+                        puntaje.setCorrectas(puntaje.getCorrectas()+1);
                     } else {
                         losesound.play(1.0f);
+                        puntaje.setIncorrectas(puntaje.getIncorrectas()+1);
                     }
                 }
                 return true;

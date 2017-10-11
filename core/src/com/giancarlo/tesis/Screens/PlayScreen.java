@@ -25,6 +25,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.giancarlo.tesis.Scenes.ExamenDao;
+import com.giancarlo.tesis.Scenes.HUD;
 import com.giancarlo.tesis.Scenes.Login;
 import com.giancarlo.tesis.Scenes.Pregunta;
 import com.giancarlo.tesis.Scenes.Puntaje;
@@ -45,6 +46,7 @@ public class PlayScreen implements Screen {
     public List<Pregunta> preguntas;
     public Integer contador=0;
     public Puntaje puntaje_general;
+    public HUD hud;
 
     public TesisMain game;
     private OrthographicCamera gamecam;
@@ -90,6 +92,7 @@ public class PlayScreen implements Screen {
             preguntas = new ArrayList<Pregunta>();
             preguntas = dao.listar();
             currentScore = new Question(game.batch, this,preguntas.get(0));
+            hud = new HUD(game.batch,this);
             pantalla_login = new Login(game.batch,this);
             mapLoader = new TmxMapLoader();
             map = mapLoader.load("level1-2.tmx");
@@ -132,12 +135,6 @@ public class PlayScreen implements Screen {
                 list_personajes.add(enemigo);
             }
 
-        /*
-        cache.beginCache();
-        cache.add(list_personajes);
-        cache.
-        cache.end();
-        */
             personaje1 = new PersonajePrincipal(world, this, "M");
             musica_fondo.play(0.4f);
             musica_fondo.loop();
@@ -222,6 +219,9 @@ public class PlayScreen implements Screen {
         switch(state){
             case Running:
                 handleInput(delta);
+                hud.update();
+                game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+                hud.stage.draw();
                 break;
             case Paused:
                 //don't update

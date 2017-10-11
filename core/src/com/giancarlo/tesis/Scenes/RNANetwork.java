@@ -10,7 +10,7 @@ public class RNANetwork {
     }
     static final int L1 = 4, L2 = 3;
 
-    public static void calcular_dificultad_siguiente(float[][]X) {
+    public static int calcular_dificultad_siguiente(float[][]X) {
 
         // ingresar los datos desde la app
 
@@ -101,6 +101,7 @@ public class RNANetwork {
 //
 //            theta2 = nn.sum(theta2, nn.multiply(nn.transpose(z2), z3_delta));
 //            theta1 = nn.sum(theta1, nn.transpose(nn.multiply(nn.transpose(X), z2_delta)));
+        return pred[0];
     }
 
     private static void printMatrix(float[][] arr) {
